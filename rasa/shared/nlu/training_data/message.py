@@ -344,3 +344,9 @@ class Message:
                 and not (self.data.get(INTENT) or self.data.get(RESPONSE))
             )
         )
+
+    def is_e2e_message(self) -> bool:
+        return bool(
+            (self.get(ACTION_TEXT) and not self.get(ACTION_NAME))
+            or (self.get(TEXT) and not self.get(INTENT))
+        )
